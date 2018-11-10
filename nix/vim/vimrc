@@ -1,6 +1,9 @@
 " Tab Stop handling
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=3 softtabstop=3 expandtab shiftwidth=3 smarttab
+
+" Enable fxf bindings.
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
 " Allow status lines to be selected or hidden (show by default)
 

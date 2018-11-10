@@ -43,7 +43,7 @@ for i in ~/.*; do
     [ ! -h "$i" ] && continue
 
     # We have a link: Is it stale? If so, delete it ...
-    if [ ! -f "$i" ]; then
+    if [ ! -f "$i"  -a ! -d "$i" ]; then
         echo "Deleting stale link: $i"
         rm "$i"
     fi
