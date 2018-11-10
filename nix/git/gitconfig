@@ -29,9 +29,8 @@
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
-	name = Jeff Coffler
-	email = jeff@taltos.com
-
+        name = Mark Hollomon
+        email = mhhollomon@gmail.com
 [alias]
 	co-master = !git checkout master && git submodule foreach git checkout master
 	lol = log --oneline --graph
