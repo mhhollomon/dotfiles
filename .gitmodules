@@ -1,0 +1,6 @@
+[submodule "lightline.vim"]
+	path = lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/pack/mhh/start/lightline.vim"]
+	path = vim/pack/mhh/start/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
