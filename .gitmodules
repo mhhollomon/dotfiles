@@ -7,3 +7,6 @@
 [submodule "nix/vim/pack/mhh/start/nerdtree"]
 	path = nix/vim/vim/pack/mhh/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+[submodule "ix/vim/vim/pack/mhh/start/vim-cmake"]
+	path = ix/vim/vim/pack/mhh/start/vim-cmake
+	url = https://github.com/vhdirk/vim-cmake
