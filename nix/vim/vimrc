@@ -45,3 +45,5 @@ endif
 " Make it super easy to edit .vimrc
 
 noremap ,vim :new ~/.vimrc<cr>
+
+map <C-o> :NERDTreeToggle<CR>
