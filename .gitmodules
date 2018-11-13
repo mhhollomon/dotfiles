@@ -1,12 +1,9 @@
 [submodule "lightline.vim"]
-	path = lightline.vim
-	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/pack/mhh/start/lightline.vim"]
 	path = nix/vim/vim/pack/mhh/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
-[submodule "nix/vim/pack/mhh/start/nerdtree"]
+[submodule "nerdtree"]
 	path = nix/vim/vim/pack/mhh/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-[submodule "ix/vim/vim/pack/mhh/start/vim-cmake"]
+[submodule "vim-cmake"]
 	path = nix/vim/vim/pack/mhh/start/vim-cmake
 	url = https://github.com/vhdirk/vim-cmake
