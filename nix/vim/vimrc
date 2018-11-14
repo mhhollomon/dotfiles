@@ -1,11 +1,43 @@
 "Tab Stop handling
-
 set tabstop=3 softtabstop=3 expandtab shiftwidth=3 smarttab
 
-" Enable fxf bindings.
-set rtp+=/usr/share/fzf
+"Turn off the mouse
+set mouse=
 
+let s:big_font = 'Source Code Pro 17'
+let s:sml_font = 'Source Code Pro 10'
+let &guifont=s:sml_font
+
+colorscheme default
+
+" hide the menu and toolbar by default
+set guioptions-=m
+set guioptions-=T
+
+" but give ourselves a way to get them back
+map ,gm :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+map ,gt :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+
+" Enable fxf bindings.
+"set rtp+=/usr/share/fzf
+
+" Allow buffers to be open and windowless, even if changed.
 set hidden
+
+" Set things up a little more comfortably when working remotely
+"
+let s:remote_mode = 0
+function! ToggleRemoteMode()
+   if s:remote_mode == 0
+      let s:remote_mode = 1
+      let &guifont=s:big_font
+   else
+      let s:remote_mode = 0
+      let &guifont=s:sml_font
+   endif
+endfunction
+nnoremap ,rem :call ToggleRemoteMode()<CR>
+
 
 " Allow status lines to be selected or hidden (show by default)
 
@@ -48,4 +80,11 @@ endif
 
 noremap ,vim :new ~/.vimrc<cr>
 
+" NERDTree support
 map <C-o> :NERDTreeToggle<CR>
+
+" lightline config
+
+let g:lightline = {
+   \ 'colorscheme' : 'solarized'
+   \ }
