@@ -1,0 +1,6 @@
+alias jsrv="bundle exec jekyll serve --host `hostname -I`"
+alias hsrv="hugo server --bind `hostname -I` --baseURL http://`hostname -I`/ --appendPort"
+
+mkpost() {
+   hugo new --editor vim post/$1.md
+}

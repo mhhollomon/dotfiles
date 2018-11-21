@@ -1,1 +1,0 @@
-alias jsrv="bundle exec jekyll serve --host `hostname -I`"
