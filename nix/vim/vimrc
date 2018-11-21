@@ -1,5 +1,5 @@
 "Tab Stop handling
-set tabstop=3 softtabstop=3 expandtab shiftwidth=3 smarttab
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
 
 "Turn off the mouse
 set mouse=
@@ -17,6 +17,9 @@ set guioptions-=T
 " but give ourselves a way to get them back
 map ,gm :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 map ,gt :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+
+" Toggle paste mode
+map ,pp :if &paste==#0<Bar>set paste<Bar>else<Bar>set nopaste<Bar>endif<CR>
 
 " Enable fxf bindings.
 "set rtp+=/usr/share/fzf
