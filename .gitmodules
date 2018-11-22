@@ -5,5 +5,5 @@
 	path = nix/vim/vim/pack/mhh/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
 [submodule "vim-cmake"]
-	path = nix/vim/vim/pack/mhh/start/vim-cmake
+	path = nix/vim/vim/pack/mhh/opt/vim-cmake
 	url = https://github.com/vhdirk/vim-cmake

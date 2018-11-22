@@ -21,8 +21,6 @@ map ,gt :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 " Toggle paste mode
 map ,pp :if &paste==#0<Bar>set paste<Bar>else<Bar>set nopaste<Bar>endif<CR>
 
-" Enable fxf bindings.
-"set rtp+=/usr/share/fzf
 
 " Allow buffers to be open and windowless, even if changed.
 set hidden
@@ -91,3 +89,8 @@ map <C-o> :NERDTreeToggle<CR>
 let g:lightline = {
    \ 'colorscheme' : 'solarized'
    \ }
+
+" cmake
+if executable("cmake")
+    packadd vim-cmake
+endif
