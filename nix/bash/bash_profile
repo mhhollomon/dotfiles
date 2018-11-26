@@ -170,8 +170,8 @@ fi
 # Support for some scoop related items when running under cygwin
 #
 if [ $(uname -s) = "CYGWIN_NT-10.0" ]; then
-    if [ -d "/cygwin/c/scoop/apps/hugo/current" ]; then
-        export PATH="$PATH:/cygwin/c/scoop/apps/hugo/current"
+    if [ -d "/cygwin/c/scoop/shims" ]; then
+        export PATH="$PATH:/cygwin/c/scoop/shims"
     fi
 fi
 
