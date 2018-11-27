@@ -118,22 +118,6 @@ case `uname -s` in
 	;;
 esac
 
-# Host-specific settings
-#
-# Some hosts (i.e. Mac OSX) give us a fully qualified name - we don't want that
-
-S_HOSTNAME=`hostname`
-S_HOSTNAME=${S_HOSTNAME/\.opsmgr\.lan/}
-
-case $S_HOSTNAME in
-    scxcore-rhel50-01 | scxcore-rhel51-01)
-	export PATH=/usr/java/default/bin:$PATH
-	;;
-esac
-
-unset S_HOSTNAME
-
-
 # If ccache is installed, then add it to head of path
 # (easiest way for cmake to use it without command line options)
 
@@ -145,27 +129,13 @@ fi
 # Support for go (language)
 #
 
-if [ -d /usr/local/go ]; then
-   # Preferences for GO path differ based on O/S
-
-   case `uname -s` in
-       Darwin)
-            export GOPATH=$HOME/local/go
-            ;;
-        Linux)
-            export GOPATH=$HOME/dev/go
-            if [ -f /opt/goland/bin/goland.sh ]; then
-                alias goland=/opt/goland/bin/goland.sh
-            fi
-            ;;
-        *)
-            export GOPATH=$HOME/go
-            ;;
-   esac
-
-   export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+if [ -d "${HOME}/golang" ]; then
+    export PATH="${HOME}/golang/bin:$PATH"
 fi
 
+if [ -d "${HOME}/go" ]; then
+    export PATH-"${HOME}/go/bin:$PATH"
+fi
 #
 # Support for some scoop related items when running under cygwin
 #
