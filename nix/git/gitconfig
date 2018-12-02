@@ -37,3 +37,5 @@
 	sync-subs = !git pull && git remote prune origin && git submodule foreach git pull && git submodule foreach git remote prune origin
 	rmrbranch = push origin --delete  # <Branch-name> supplied by user
 	rmrprune = remote prune origin
+[pager]
+    branch = false
