@@ -90,6 +90,13 @@ noremap ,vim :new ~/.vimrc<cr>
 " NERDTree support
 map <C-o> :NERDTreeToggle<CR>
 
+" Buffer navigation
+map <C-n> :bn<CR>
+map <C-p> :bp<CR>
+
+" Move to the next buffer and close the one we started on.
+map <C-w>d :bn<CR>:bd#<CR>
+
 colorscheme onehalf
 
 " lightline config
