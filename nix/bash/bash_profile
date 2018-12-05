@@ -159,3 +159,9 @@ global_find()
 }
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+
+# only do this if we are interactive
+case "$-" in
+    *i*) (cd ~/.cfg; git pull --recurse)
+        ;;
+esac
