@@ -163,7 +163,7 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 # only do this if we are interactive
 case "$-" in
     *i*) 
-        cnt=$(ps -fu mhhollomon | grep -e -bash | grep -v grep | wc -l)
+        cnt=$(ps -fu $USER | grep -e -bash | grep -v grep | wc -l)
         # 3 because the capture above will spawn a subshell.
         if  (( $cnt < 3 )); then
             (cd ~/.cfg; git pull --recurse)
