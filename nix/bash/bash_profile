@@ -160,13 +160,28 @@ global_find()
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
+check_config() {
+    # just to make the below a little easier.
+    ( cd ~/.cfg;
+    gitstat=$(git status --short)
+    if [ -z "$gitstat" ]; then
+        git pull --recurse
+    else
+        echo
+        echo "--- Uncommited changes in .cfg ---"
+        echo $gitstat
+        echo
+    fi
+    )
+
+}
 # only do this if we are interactive
 case "$-" in
     *i*) 
         cnt=$(ps -fu $USER | grep -e -bash | grep -v grep | wc -l)
         # 3 because the capture above will spawn a subshell.
         if  (( $cnt < 3 )); then
-            (cd ~/.cfg; git pull --recurse)
+            check_config
         fi
         ;;
 esac
