@@ -97,6 +97,12 @@ map <C-p> :bp<CR>
 " Move to the next buffer and close the one we started on.
 map <C-w>d :bn<CR>:bd#<CR>
 
+" Fancy version of the above
+nmap <C-w>! <Plug>Kwbd
+
+nmap ,nn :set number relativenumber<cr>
+nmap ,nf :set nonumber norelativenumber<cr>
+
 colorscheme onehalf
 
 " lightline config
