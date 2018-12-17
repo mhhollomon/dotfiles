@@ -165,7 +165,7 @@ check_config() {
     ( cd ~/.cfg;
     gitstat=$(git status --short)
     if [ -z "$gitstat" ]; then
-        git pull --recurse
+        git pull --recurse --prune
     else
         echo
         echo "--- Uncommited changes in .cfg ---"
