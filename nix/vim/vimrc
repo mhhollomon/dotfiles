@@ -120,8 +120,8 @@ nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
 
 " Tab Nav
-nnoremap n <C-PageUp>
-nnoremap p <c-PageDown>
+nnoremap p <C-PageUp>
+nnoremap n <c-PageDown>
 
 " textwrapping
 autocmd FileType markdown textwidth=79 formatoption+=t
