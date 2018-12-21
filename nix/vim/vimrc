@@ -123,6 +123,9 @@ nnoremap <C-h> <C-W><C-H>
 nnoremap n <C-PageUp>
 nnoremap p <c-PageDown>
 
+" textwrapping
+autocmd FileType markdown textwidth=79 formatoption+=t
+
 colorscheme onehalf
 
 " lightline config
