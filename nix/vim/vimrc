@@ -124,7 +124,7 @@ nnoremap p <C-PageUp>
 nnoremap n <c-PageDown>
 
 " textwrapping
-autocmd FileType markdown textwidth=79 formatoption+=t
+autocmd FileType markdown set textwidth=79 formatoptions+=t
 
 colorscheme onehalf
 
