@@ -158,6 +158,10 @@ global_find()
     fi
 }
 
+if [ -f "/google/devshell/bashrc.google" ]; then
+    source "/google/devshell/bashrc.google"
+fi
+
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 check_config() {
