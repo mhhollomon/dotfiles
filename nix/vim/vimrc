@@ -31,6 +31,8 @@ if has('gui_running')
     endif
 endif
 
+set t_Co=256
+
 " Toggle paste mode
 map ,pp :if &paste==#0<Bar>set paste<Bar>else<Bar>set nopaste<Bar>endif<CR>
 

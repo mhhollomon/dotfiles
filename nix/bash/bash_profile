@@ -9,7 +9,9 @@ export EDITOR=/usr/bin/vim
 
 IGNOREEOF=3
 
-export TERM=xterm-256color
+if [ ! -z "${DEVSHELL_PROJECT_ID}" ]; then
+    export TERM=xterm-256color
+fi
 
 #
 # Platform specific setup
