@@ -102,17 +102,10 @@ map <C-w>d :bn<CR>:bd#<CR>
 " Fancy version of the above
 nmap <C-w>! <Plug>Kwbd
 
-" Do awesome things with line numbers.
-" # cribbed from https://jeffkreeftmeijer.com/vim-number/
-set number relativenumber
+set number norelativenumber
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-nmap ,nn :set number relativenumber<cr>
-nmap ,nf :set nonumber norelativenumber<cr>
+nmap ,nn :set number<cr>
+nmap ,nf :set nonumber<cr>
 
 " window nav
 " from: https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally 
