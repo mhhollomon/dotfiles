@@ -74,6 +74,13 @@ xterm*|rxvt*)
     ;;
 esac
 
+#
+# Set the X Display if it looks like it might work
+#
+if [[ ! -z "$SSH_CONNECTION" ]]; then
+    export DISPLAY=`echo ${SSH_CONNECTION} | awk '{ print $1 }'`":0.0"
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
