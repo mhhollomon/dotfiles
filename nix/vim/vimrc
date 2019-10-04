@@ -115,8 +115,13 @@ nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
 
 " Tab Nav
-nnoremap p <C-PageUp>
-nnoremap n <c-PageDown>
+if has('gui_running')
+    nnoremap ð <C-PageUp>
+    nnoremap î <c-PageDown>
+else
+    nnoremap p <C-PageUp>
+    nnoremap n <c-PageDown>
+endif
 
 " textwrapping
 autocmd FileType markdown set textwidth=79 formatoptions+=t
