@@ -4,33 +4,6 @@ set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
 "Turn off the mouse
 set mouse=
 
-if has('gui_running')
-    if has('unix')
-        let s:big_font = 'Source Code Pro 17'
-        let s:sml_font = 'Source Code Pro 10'
-    else
-        let s:big_font = "Consolas:h12:cANSI:qDRAFT"
-        let s:sml_font = "Consolas:h9:cANSI:qDRAFT"
-    endif
-
-    let &guifont=s:sml_font
-    
-    " hide the menu and toolbar by default
-    set guioptions-=m
-    set guioptions-=T
-
-    " but give ourselves a way to get them back
-    map ,gm :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-    map ,gt :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-
-    " Try to use true color if we can
-    if exists('+termguicolors')
-      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-      set termguicolors
-    endif
-endif
-
 set t_Co=256
 
 " Toggle paste mode
@@ -39,21 +12,6 @@ map ,pp :if &paste==#0<Bar>set paste<Bar>else<Bar>set nopaste<Bar>endif<CR>
 
 " Allow buffers to be open and windowless, even if changed.
 set hidden
-
-" Set things up a little more comfortably when working remotely
-"
-let s:remote_mode = 0
-function! ToggleRemoteMode()
-   if s:remote_mode == 0
-      let s:remote_mode = 1
-      let &guifont=s:big_font
-   else
-      let s:remote_mode = 0
-      let &guifont=s:sml_font
-   endif
-endfunction
-nnoremap ,rem :call ToggleRemoteMode()<CR>
-
 
 " Allow status lines to be selected or hidden (show by default)
 

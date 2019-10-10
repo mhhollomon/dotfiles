@@ -27,7 +27,7 @@ Then, clone to you target host.
 
 Then, add your dotfiles:
 
-    $ git clone git@github.com:jeffaco/dotfiles.git
+    $ git clone git@github.com:mhhollomon/dotfiles.git
     $ cd dotfiles
     $  # edit files
     $  # edit files
@@ -38,7 +38,7 @@ Then, add your dotfiles:
 Finally, to install your dotfiles onto a new system:
 
     $ cd $HOME
-    $ git clone git@github.com:jeffaco/dotfiles.git
+    $ git clone git@github.com:mhhollomon/dotfiles.git
     $ dotfiles/nix/bootstrap.sh
 
 ## Compatibility
