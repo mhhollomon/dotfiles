@@ -74,11 +74,16 @@ xterm*|rxvt*)
     ;;
 esac
 
-#
-# Set the X Display if it looks like it might work
-#
+
+ #Set the X Display if it looks like it might work
+
 if [[ ! -z "$SSH_CONNECTION" ]]; then
-    export DISPLAY=`echo ${SSH_CONNECTION} | awk '{ print $1 }'`":0.0"
+        set_ssh_display() {
+            export DISPLAY=`echo ${SSH_CONNECTION} | awk '{ print $1 }'`":0.0"
+        }
+    if [[ -z "$DISPLAY" ]]; then
+        set_ssh_display
+    fi
 fi
 
 # enable color support of ls and also add handy aliases
