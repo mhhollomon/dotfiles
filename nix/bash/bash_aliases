@@ -21,6 +21,6 @@ mkpost() {
    hugo new --editor vim post/$1.md
 }
 
-if [[ -x ~/.bashrc_local_aliases ]]; then
-    . ~/.bashrc_local_aliases
+if [[ -x ~/.bash_local_aliases ]]; then
+    . ~/.bash_local_aliases
 fi
