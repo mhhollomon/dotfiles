@@ -2,6 +2,10 @@
 # editor. So uncomment the line below and enter the editor of your choice :-)
 export EDITOR=/usr/bin/vim
 
+if [ -z "$USER" ]; then
+    USER=$(id -un)
+fi
+
 
 #
 # Set up common aliases and environment variables
@@ -61,39 +65,14 @@ fi
 
 case `uname -s` in
 
-    Darwin)
-	alias ps-scx="ps -ef | grep cim"
-	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
-	;;
-
-    HP-UX)
-	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
-
-	export PATH=/opt/java1.5/bin:$PATH
-	export UNIX_STD=2003
-
-        # HP utilities are very sensitive to locale, and some don't work with utf8
-        LANG=C
-        export LANG
-
-        # Be sure we have correct version of 'make'
-        if [ ! -f ~/bin/make ]; then
-            mkdir -p ~/bin
-            ln -s /usr/local/bin/gmake ~/bin/make
-        fi
-        export PATH=~/bin:$PATH
-	;;
-
     Linux)
-	# alias ps-scx="ps aux | egrep \"cim|scx\""
-	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
-	export PATH=$PATH:/usr/sbin
+        export PATH=$PATH:/usr/sbin
 
-	export PS1="\u:\W> "
-	;;
+        export PS1="\u:\W> "
+        ;;
 
     *)
-	;;
+        ;;
 esac
 
 # If ccache is installed, then add it to head of path
@@ -113,14 +92,6 @@ fi
 
 if [ -d "${HOME}/go" ]; then
     export PATH="${HOME}/go/bin:$PATH"
-fi
-#
-# Support for some scoop related items when running under cygwin
-#
-if [ $(uname -s) = "CYGWIN_NT-10.0" ]; then
-    if [ -d "/cygwin/c/scoop/shims" ]; then
-        export PATH="$PATH:/cygwin/c/scoop/shims"
-    fi
 fi
 
 if [ -d "${HOME}/.linuxbrew" ]; then
@@ -172,18 +143,20 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 check_config() {
     # just to make the below a little easier.
-    ( cd ~/.cfg;
-    gitstat=$(git status --short)
-    if [ -z "$gitstat" ]; then
-        git pull --recurse --prune
-    else
-        echo
-        echo "--- Uncommited changes in .cfg ---"
-        echo $gitstat
-        echo
+    if [ ! -e ~/.NOCFG_UPDATE ] && [ -L ~/.bash_profile ]; then
+        bf=$(dirname $(readlink -e ~/.bash_profile))
+        ( cd $bf;
+        gitstat=$(git status --short)
+        if [ -z "$gitstat" ]; then
+            git pull --recurse --prune
+        else
+            echo
+            echo "--- Uncommited changes in " $bf "---"
+            echo $gitstat
+            echo
+        fi
+        )
     fi
-    )
-
 }
 # only do this if we are interactive
 case "$-" in
