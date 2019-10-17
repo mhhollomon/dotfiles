@@ -7,3 +7,6 @@
 [submodule "vim-cmake"]
 	path = nix/vim/vim/pack/mhh/opt/vim-cmake
 	url = https://github.com/vhdirk/vim-cmake
+[submodule "nix/vim/vim/pack/mhh/start/yalr.vim"]
+	path = nix/vim/vim/pack/mhh/start/yalr.vim
+	url = https://github.com/mhhollomon/yalr.vim.git
