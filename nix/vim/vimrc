@@ -98,7 +98,7 @@ else
 endif
 
 " Set the color scheme
-colorscheme onehalf
+colorscheme onehalflight
 
 " lightline config
 let g:lightline = {
