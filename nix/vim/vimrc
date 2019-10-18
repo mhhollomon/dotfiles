@@ -1,22 +1,36 @@
+let mapleader = ","
+
 "Tab Stop handling
-set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab shiftround
+
+" line numbering is on. don't use relative line numbers,
+" use 5 columns for line numbers
+set number norelativenumber numberwidth=5
+
+" Allow buffers to be open and windowless, even if changed.
+set hidden
 
 "Turn off the mouse
 set mouse=
+
+" Let the plugins highlight, etc
+syntax on
+filetype plugin indent on
+
+" Markdown
+" textwrapping
+autocmd FileType markdown set textwidth=79 formatoptions+=t
+
 
 if ! has('gui_running')
     set t_Co=256
 endif
 
 " Toggle paste mode
-map ,pp :if &paste==#0<Bar>set paste<Bar>else<Bar>set nopaste<Bar>endif<CR>
+nnoremap <leader>pp :set paste!<CR>
 
-
-" Allow buffers to be open and windowless, even if changed.
-set hidden
 
 " Allow status lines to be selected or hidden (show by default)
-
 let s:hidden_all = 0
 function! ToggleHiddenAll()
     if s:hidden_all  == 0
@@ -36,36 +50,36 @@ endfunction
 
 nnoremap <S-h> :call ToggleHiddenAll()<CR>
 
-let s:hidden_all = 0
-
+" Be sure these match the ones above
 set showmode
 set ruler
 set laststatus=2
 set showcmd
 
-syntax on
-filetype plugin indent on
+" Move a line down in the file
+noremap - ddp
+" Move a line up in the file
+noremap _ ddkP
 
 " Make it super easy to edit .vimrc
-noremap ,vim :tabnew ~/.vimrc<cr>
+noremap <leader>vim :tabnew $MYVIMRC<cr>
+noremap <leader>sv :source $MYVIMRC<cr>
 
 " NERDTree support
 map <C-o> :NERDTreeToggle<CR>
 
 " Buffer navigation
-map <C-n> :bn<CR>
-map <C-p> :bp<CR>
+noremap <C-n> :bn<CR>
+noremap <C-p> :bp<CR>
 
 " Move to the next buffer and close the one we started on.
-map <C-w>d :bn<CR>:bd#<CR>
+nnoremap <C-w>d :bn<CR>:bd#<CR>
 
 " Fancy version of the above
-nmap <C-w>! <Plug>Kwbd
+nnoremap <C-w>! <Plug>Kwbd
 
-set number norelativenumber
-
-nmap ,nn :set number<cr>
-nmap ,nf :set nonumber<cr>
+" Toggle line numbers
+nnoremap <leader>nn :set number!<cr>
 
 " window nav
 " from: https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally 
@@ -83,9 +97,7 @@ else
     nnoremap n <c-PageDown>
 endif
 
-" textwrapping
-autocmd FileType markdown set textwidth=79 formatoptions+=t
-
+" Set the color scheme
 colorscheme onehalf
 
 " lightline config
