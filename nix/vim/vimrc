@@ -48,7 +48,7 @@ function! ToggleHiddenAll()
     endif
 endfunction
 
-nnoremap <S-h> :call ToggleHiddenAll()<CR>
+nnoremap <leader>hide :call ToggleHiddenAll()<CR>
 
 " Be sure these match the ones above
 set showmode
@@ -66,7 +66,10 @@ noremap <leader>vim :tabnew $MYVIMRC<cr>
 noremap <leader>sv :source $MYVIMRC<cr>
 
 " NERDTree support
-map <C-o> :NERDTreeToggle<CR>
+" Note that the suggested <C-o> hides the
+" jump list commands which are way more useful
+" than NERDTree
+map <leader>nt :NERDTreeToggle<CR>
 
 " Buffer navigation
 noremap <C-n> :bn<CR>
