@@ -19,8 +19,22 @@ filetype plugin indent on
 
 " Markdown
 " textwrapping
-autocmd FileType markdown set textwidth=79 formatoptions+=t
+" Placed in an auto command group to allow
+" no dups when re loading vimrc.
+" c.f. http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
+"
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown set textwidth=79 formatoptions+=t
+augroup END
 
+" Vim
+" Set folding on markers
+"
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
 if ! has('gui_running')
     set t_Co=256
@@ -56,12 +70,19 @@ set ruler
 set laststatus=2
 set showcmd
 
-" Move a line down in the file
+" Disable the arrow keys in normal mode.
+" I really need to learn to move efficiently.
+nnoremap <up>    <nop>
+nnoremap <down>  <nop>
+nnoremap <left>  <nop>
+nnoremap <right> <nop>
+
+" Move the current line down in the file
 noremap - ddp
-" Move a line up in the file
+" Move the current line up in the file
 noremap _ ddkP
 
-" Make it super easy to edit .vimrc
+" Make it easy to edit .vimrc
 noremap <leader>vim :tabnew $MYVIMRC<cr>
 noremap <leader>sv :source $MYVIMRC<cr>
 
