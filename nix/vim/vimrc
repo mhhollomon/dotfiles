@@ -78,9 +78,9 @@ nnoremap <left>  <nop>
 nnoremap <right> <nop>
 
 " Move the current line down in the file
-noremap - ddp
+"noremap - ddp
 " Move the current line up in the file
-noremap _ ddkP
+"noremap _ ddkP
 
 " Make it easy to edit .vimrc
 noremap <leader>vim :tabnew $MYVIMRC<cr>
