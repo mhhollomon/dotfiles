@@ -1,7 +1,11 @@
-
+let resolution = system("xdpyinfo | awk '/resolution/ { print $2; }'")
 if has('unix')
     let s:big_font = 'Hack 15, Source Code Pro 17'
-    let s:sml_font = 'Hack 10, Source Code Pro 10'
+    if resolution == 160
+        let s:sml_font = 'Hack 12, Source Code Pro 12'
+    else
+        let s:sml_font = 'Hack 10, Source Code Pro 10'
+    endif
 else
     let s:big_font = "Consolas:h12:cANSI:qDRAFT"
     let s:sml_font = "Consolas:h9:cANSI:qDRAFT"
