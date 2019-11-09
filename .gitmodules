@@ -13,3 +13,6 @@
 [submodule "nix/vim/vim/pack/mhh/start/plantuml"]
 	path = nix/vim/vim/pack/mhh/start/plantuml
 	url = git@github.com:aklt/plantuml-syntax.git
+[submodule "nix/vim/vim/pack/mhh/start/editorconfig-vim"]
+	path = nix/vim/vim/pack/mhh/start/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim.git
