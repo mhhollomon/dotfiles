@@ -1,5 +1,14 @@
-let resolution = system("xdpyinfo | awk '/resolution/ { print $2; }'")
+"
+" Set the font based on the type of
+" system we think we are running on and
+" the resolution of the X display if
+" appropriate.
+"
 if has('unix')
+    let resolution = 0
+    if executable("xdpyinfo")
+        let resolution = system("xdpyinfo | awk '/resolution/ { print $2; }'")
+    endif
     let s:big_font = 'Hack 15, Source Code Pro 17'
     if resolution == 160
         let s:sml_font = 'Hack 12, Source Code Pro 12'
