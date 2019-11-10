@@ -5,12 +5,13 @@
 " appropriate.
 "
 if has('unix')
-    let resolution = 0
+    let s:resolution = '0x0'
     if executable("xdpyinfo")
-        let resolution = system("xdpyinfo | awk '/resolution/ { print $2; }'")
+        let s:resolution = system("xdpyinfo | awk '/resolution/ { printf(\"%s\", $2); }'")
     endif
+
     let s:big_font = 'Hack 15, Source Code Pro 17'
-    if resolution == 160
+    if s:resolution == "160x160"
         let s:sml_font = 'Hack 12, Source Code Pro 12'
     else
         let s:sml_font = 'Hack 10, Source Code Pro 10'
