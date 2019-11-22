@@ -148,7 +148,10 @@ check_config() {
         ( cd $bf;
         gitstat=$(git status --short)
         if [ -z "$gitstat" ]; then
-            git pull --recurse --prune
+            # unfortunately, can't use recurse
+            # because of some sub-sub-modules we don't want to pull.
+            git pull --prune
+            git submodule foreach git pull --prune
         else
             echo
             echo "--- Uncommited changes in " $bf "---"
