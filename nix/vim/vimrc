@@ -1,3 +1,4 @@
+"set verbosefile=verbose.txt
 let mapleader = ","
 
 "Tab Stop handling
@@ -17,6 +18,7 @@ set mouse=
 syntax on
 filetype plugin indent on
 
+" FIle_type autocmd groups {{{1
 " Markdown
 " textwrapping
 " Placed in an auto command group to allow
@@ -35,10 +37,7 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-
-if ! has('gui_running')
-    set t_Co=256
-endif
+" }}}1
 
 " Toggle paste mode
 nnoremap <leader>pp :set paste!<CR>
@@ -69,6 +68,8 @@ set showmode
 set ruler
 set laststatus=2
 set showcmd
+
+" Key bindings {{{1
 
 " Disable the arrow keys in normal mode.
 " I really need to learn to move efficiently.
@@ -113,6 +114,8 @@ nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
 
 " Tab Nav
+" Alt-n => next tab
+" Alt-p => previous tab
 if has('gui_running')
     nnoremap ð <C-PageUp>
     nnoremap î <c-PageDown>
@@ -121,8 +124,15 @@ else
     nnoremap n <c-PageDown>
 endif
 
+" color {{{1
+if ! has('gui_running')
+    set t_Co=256
+endif
+
 " Set the color scheme
 colorscheme onehalflight
+
+" plugin config {{{1
 
 " lightline config
 let g:lightline = {
@@ -132,4 +142,9 @@ let g:lightline = {
 " cmake
 if executable("cmake")
     packadd vim-cmake
+endif
+
+" Project support {{{1
+if $PVIM_PROJECT_FILE != '' 
+    source $PVIM_PROJECT_FILE
 endif
