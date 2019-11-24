@@ -130,7 +130,7 @@ if ! has('gui_running')
 endif
 
 " Set the color scheme
-colorscheme onehalflight
+colorscheme neutron
 
 " plugin config {{{1
 
