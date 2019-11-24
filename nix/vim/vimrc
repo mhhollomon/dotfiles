@@ -1,6 +1,7 @@
 "set verbosefile=verbose.txt
 let mapleader = ","
 
+" Global config options {{{1
 "Tab Stop handling
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab shiftround
 
@@ -18,7 +19,15 @@ set mouse=
 syntax on
 filetype plugin indent on
 
-" FIle_type autocmd groups {{{1
+" Automatically change directory to
+" be that of the current buffer.
+set autochdir
+
+set laststatus=2
+
+"End global config options }}}1
+
+" File_type autocmd groups {{{1
 " Markdown
 " textwrapping
 " Placed in an auto command group to allow
@@ -37,39 +46,39 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}1
-
-" Toggle paste mode
-nnoremap <leader>pp :set paste!<CR>
+" End File_type groups }}}1
 
 
 " Allow status lines to be selected or hidden (show by default)
-let s:hidden_all = 0
-function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
-        set noshowmode
-        set noruler
-        set laststatus=0
-        set noshowcmd
-    else
-        let s:hidden_all = 0
-        set showmode
-        set ruler
-        set laststatus=2
-        set showcmd
-    endif
-endfunction
-
-nnoremap <leader>hide :call ToggleHiddenAll()<CR>
-
-" Be sure these match the ones above
-set showmode
-set ruler
-set laststatus=2
-set showcmd
+"let s:hidden_all = 0
+"function! ToggleHiddenAll()
+"    if s:hidden_all  == 0
+"        let s:hidden_all = 1
+"        set noshowmode
+"        set noruler
+"        set laststatus=0
+"        set noshowcmd
+"    else
+"        let s:hidden_all = 0
+"        set showmode
+"        set ruler
+"        set laststatus=2
+"        set showcmd
+"    endif
+"endfunction
+"
+"nnoremap <leader>hide :call ToggleHiddenAll()<CR>
+"
+"" Be sure these match the ones above
+"set showmode
+"set ruler
+"set laststatus=2
+"set showcmd
 
 " Key bindings {{{1
+
+" Toggle paste mode
+nnoremap <leader>pp :set paste!<CR>
 
 " Disable the arrow keys in normal mode.
 " I really need to learn to move efficiently.
@@ -126,7 +135,12 @@ endif
 
 " color {{{1
 if ! has('gui_running')
+    " if we're not running the gui
+    " try to set up for true color support
+    set termguicolors
     set t_Co=256
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8f = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 " Set the color scheme
@@ -138,6 +152,8 @@ colorscheme neutron
 let g:lightline = {
    \ 'colorscheme' : 'solarized'
    \ }
+" lightline show this for us
+set noshowmode
 
 " cmake
 if executable("cmake")

@@ -1,56 +1,103 @@
+"
+" Neutron colorscheme
+"
+" 
 set background=light
-hi clear
+highlight clear
 if exists("syntax_on")
 	syntax reset
 endif
 
 let g:colors_name="neutron"
 
-hi Cursor       guibg=#404040 guifg=#a0a0a0
-hi CursorColumn guibg=#e0e0e0 guifg=#202020
-hi CursorLine   guibg=#e0e0e0 guifg=#202020
-hi NonText      guibg=#d0d0d0 guifg=#606060 gui=none
-hi Visual       guibg=#fffac8 guifg=#404040 gui=none
-hi Folded       guibg=#e8e5d0 guifg=#606060 gui=none
-hi TabLineFill  guibg=#d0d0d0 guifg=#606060 gui=none
-hi SpecialKey   guibg=#e8e8e8 guifg=#a0a0a0 gui=none
-hi Search       guibg=#808080 guifg=#ffffff gui=bold
-hi ModeMsg      guibg=#f3f2ed guifg=#304050 gui=bold
-hi MoreMsg      guibg=#f3f2ed guifg=#304050 gui=bold
-hi StatusLine   guibg=#808080 guifg=#f3f2ed gui=bold
-hi StatusLineNC guibg=#707070 guifg=#d0d0d0 gui=none
-hi VertSplit    guibg=#707070 guifg=#909090 gui=none
-hi LineNr       guibg=#e8e5d0 guifg=#808080 gui=none
 
-hi DiffAdd      guibg=#a67429 guifg=#ffcc7f
-hi DiffDelete   guibg=#a62910 guifg=#ff7f50
-hi DiffChange   guibg=#425c78 guifg=#7fbdff
-hi DiffText     guibg=#4e9a06 guifg=#8ae234
+" 
+" Blindly assume true color cterm support
+"
+function! s:h(group, fg, bg, attr)
+  if a:fg != ""
+    exec "hi " . a:group . " guifg=" . a:fg 
+  else
+    exec "hi " . a:group . " guifg=NONE cterm=NONE"
+  endif
+  if a:bg != ""
+    exec "hi " . a:group . " guibg=" . a:bg 
+  else
+    exec "hi " . a:group . " guibg=NONE ctermbg=NONE"
+  endif
+  if a:attr != ""
+    exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
+  else
+    exec "hi " . a:group . " gui=NONE cterm=NONE"
+  endif
+endfun
+
+let s:gray_20 = "#202020"
+let s:gray_40 = "#404040"
+let s:gray_60 = "#606060"
+let s:gray_70 = "#707070"
+let s:gray_80 = "#808080"
+let s:gray_90 = "#909090"
+let s:gray_a0 = "#a0a0a0"
+let s:gray_b0 = "#b0b0b0"
+let s:gray_d0 = "#d0d0d0"
+let s:gray_e0 = "#e0e0e0"
+
+" The 'normal' colors.
+let s:bg      = "#f3f2ed"
+let s:fg      = "#303030"
+
+" Vim functional group {{{1
+"        group           fg         bg         attr
+call s:h("Cursor",       s:gray_a0, s:gray_40, "")
+call s:h("CursorColumn", s:gray_20, s:gray_e0, "")
+call s:h("CursorLine",   s:gray_20, s:gray_e0, "")
+
+call s:h("NonText",      s:gray_60, s:gray_d0, "")
+call s:h("Visual",       s:fg,      "#fffac8", "") 
+call s:h("Folded",       s:gray_60, "#e8e5d0", "")
+call s:h("TabLineFill",  s:gray_60, s:gray_d0, "")
+call s:h("SpecialKey",   s:gray_a0, "#e8e8e8", "")
+call s:h("Search",       "#ffffff", s:gray_80, "")
+call s:h("ModeMsg",      "#304050", s:bg,      "")
+call s:h("MoreMsg",      "#304050", s:bg,      "")
+" Make status line reversed
+call s:h("StatusLine",   s:bg,      s:gray_80, "bold")
+call s:h("StatusLineNC", s:gray_d0, s:gray_70, "")
+call s:h("VertSplit",    s:gray_90, s:gray_70, "")
+call s:h("LineNr",       s:gray_80, "#e8e5d0", "")
+
+call s:h("DiffAdd",      "#ffcc7f", "#a67429", "")
+call s:h("DiffDelete",   "#ff7f50", "#a62910", "")
+call s:h("DiffChange",   "#7fbdff", "#425c78", "")
+call s:h("DiffText",     "#8ae234", "#4e9a06", "")
+
+" Special, so can't use our function
 hi SpellBad     gui=undercurl guisp=#f02020
 
+" Semantic Groups {{{1
+call s:h("Title",        s:gray_20, s:bg, "underline")
+call s:h("Normal",       s:fg,      s:bg, "")
 
-hi Title          guibg=#f3f2ed guifg=#202020 gui=underline
-hi Normal         guibg=#f3f2ed guifg=#404040 gui=none
+call s:h("Comment",      s:gray_b0, s:bg, "italic")
 
-hi Comment        guibg=#f3f2ed guifg=#bbbbbb gui=none
+call s:h("Constant",     "#957301", s:bg, "")
+call s:h("String",       "#a07060", s:bg, "")
+call s:h("Character",    "#bb6245", s:bg, "")
+call s:h("Number",       "#ba7222", s:bg, "")
+call s:h("Boolean",      "#d4552c", s:bg, "")
+call s:h("Float",        "#e87a00", s:bg, "")
 
-hi Constant       guibg=#f3f2ed guifg=#957301 gui=none
-hi String         guibg=#f3f2ed guifg=#a07060 gui=none
-hi Character      guibg=#f3f2ed guifg=#bb6245 gui=none
-hi Number         guibg=#f3f2ed guifg=#ba7222 gui=none
-hi Boolean        guibg=#f3f2ed guifg=#d4552c gui=none
-hi Float          guibg=#f3f2ed guifg=#e87a00 gui=none
+call s:h("Identifier",   "#546c48", s:bg, "")
+call s:h("Function",     "#6d7181", s:bg, "")
 
-hi Identifier     guibg=#f3f2ed guifg=#546c48 gui=none
-hi Function       guibg=#f3f2ed guifg=#6d7181 gui=none
-
-hi Statement      guibg=#f3f2ed guifg=#606060 gui=none
-hi Conditional    guibg=#f3f2ed guifg=#81ac3a gui=none
-hi Repeat         guibg=#f3f2ed guifg=#aab844 gui=none
-hi Label          guibg=#f3f2ed guifg=#969664 gui=underline
-hi Operator       guibg=#f3f2ed guifg=#a79a39 gui=none
-hi Keyword        guibg=#f3f2ed guifg=#408077 gui=none
-hi Exception      guibg=#f3f2ed guifg=#a03020 gui=none
+call s:h("Statement",    s:gray_60, s:bg, "")
+call s:h("Conditional",  "#81ac3a", s:bg, "")
+call s:h("Repeat",       "#aab844", s:bg, "")
+call s:h("Label",        "#969664", s:bg, "underline")
+call s:h("Operator",     "#a79a39", s:bg, "")
+call s:h("Keyword",      "#408077", s:bg, "")
+call s:h("Exception",    "#a03020", s:bg, "")
 
 hi PreProc        guibg=#f3f2ed guifg=#7d64af gui=none
 hi Include        guibg=#f3f2ed guifg=#c5a2d8 gui=none
