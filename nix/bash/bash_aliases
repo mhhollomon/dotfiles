@@ -6,7 +6,7 @@ case $NODE in
         alias jsrv="bundle exec jekyll serve --host $IP"
         alias hsrv="hugo server --bind $IP --baseURL http://$IP/ --appendPort"
         ;;
-    arch2-vb)
+    MainDev)
         IP=$(hostname -i)
         alias jsrv="bundle exec jekyll serve --host ${IP}"
         alias hsrv="hugo server --bind ${IP} --baseURL http://${IP}/ --appendPort"
