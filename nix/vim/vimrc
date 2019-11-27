@@ -1,6 +1,19 @@
 "set verbosefile=verbose.txt
 let mapleader = ","
 
+" color {{{1
+if ! has('gui_running')
+    " if we're not running the gui
+    " try to set up for true color support
+    set termguicolors
+    let &t_Co=256
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+" Set the color scheme
+colorscheme neutron
+
 " Global config options {{{1
 "Tab Stop handling
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab shiftround
@@ -132,19 +145,6 @@ else
     nnoremap p <C-PageUp>
     nnoremap n <c-PageDown>
 endif
-
-" color {{{1
-if ! has('gui_running')
-    " if we're not running the gui
-    " try to set up for true color support
-    set termguicolors
-    set t_Co=256
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8f = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-" Set the color scheme
-colorscheme neutron
 
 " plugin config {{{1
 
