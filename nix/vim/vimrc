@@ -153,13 +153,8 @@ endif
 let g:lightline = {
    \ 'colorscheme' : 'solarized'
    \ }
-" lightline show this for us
+" lightline shows this for us
 set noshowmode
-
-" cmake
-if executable("cmake")
-    packadd vim-cmake
-endif
 
 " Project support {{{1
 if $PVIM_PROJECT_FILE != '' 
