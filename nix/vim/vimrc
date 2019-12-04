@@ -49,7 +49,8 @@ set laststatus=2
 "
 augroup filetype_md
     autocmd!
-    autocmd FileType markdown set textwidth=79 formatoptions+=t
+    autocmd FileType markdown setlocal textwidth=79 formatoptions+=t autoindent
+    autocmd FileType markdown setlocal listchars=eol:$,tab:>·,trail:~
 augroup END
 
 " Vim
