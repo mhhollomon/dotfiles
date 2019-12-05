@@ -163,7 +163,13 @@ check_config()
     #
     if [ ! -e ~/.NOCFG_UPDATE ] && [ -L ~/.bash_profile ]; then
         # figure out where we actuall live
-        bf=$(dirname $(readlink -e ~/.bash_profile))
+        local bp_dir=$(dirname $(readlink -e ~/.bash_profile))
+        local cfg_dir=$(
+            cd ${bp_dir}
+            git rev-parse --show-toplevel
+        )
+
+        echo "cfg_dir = ${cfg_dir}"
 
         #
         # The bash_profile will call this with 'maybe'
@@ -172,9 +178,9 @@ check_config()
         # (assuming we can figure that out)
         #
         if [ "$1" = "maybe" ]; then
-            if [ -e "${bf}/last_update" ]; then
+            if [ -e "${cfg_dir}/last_update" ]; then
                 local file_time
-                file_time=$(stat -c %Y -- "${bf}/last_update")
+                file_time=$(stat -c %Y -- "${cfg_dir}/last_update")
                 if (( $(( $(date +%s) - ${file_time} )) < 17280 )); then
                     expired=false
                 fi
@@ -182,17 +188,17 @@ check_config()
         fi
 
         if [ "${expired}" = "true" ]; then
-            ( cd $bf;
+            ( cd $cfg_dir;
             gitstat=$(git status --short)
             if [ -z "$gitstat" ]; then
                 # unfortunately, can't use recurse
                 # because of some sub-sub-modules we don't want to pull.
                 git pull --prune
                 git submodule foreach git pull --prune
-                touch "${bf}/last_update"
+                touch "${cfg_dir}/last_update"
             else
                 echo
-                echo "--- Uncommited changes in " $bf "---"
+                echo "--- Uncommited changes in " $cfg_dir "---"
                 echo $gitstat
                 echo
             fi
