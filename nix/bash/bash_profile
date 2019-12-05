@@ -14,7 +14,7 @@ fi
 IGNOREEOF=3
 
 if [ ! -z "${DEVSHELL_PROJECT_ID}" ]; then
-    export TERM=xterm-256color
+    export TERM=screen-256color
 fi
 
 #
@@ -139,35 +139,76 @@ if [ -f "/google/devshell/bashrc.google" ]; then
     source "/google/devshell/bashrc.google"
 fi
 
-if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
 
-check_config() {
-    # just to make the below a little easier.
+# Function update our dotfiles from the github repo.
+# First check the status for local changes. Don't
+# update if we find some.
+# Also, let a machine opt out by having a .NOCFG_UPDATE
+# file in the home directory.
+#
+
+check_config()
+{
+
+    local expired=true
+
+    # If .bash_profile is not a link, then we can't find
+    # the local repo clone and we have no chance of success.
+    #
+    # If they have created .NOCFG_UPDATE, then they are opting
+    # out of automated updates.
+    #
     if [ ! -e ~/.NOCFG_UPDATE ] && [ -L ~/.bash_profile ]; then
+        # figure out where we actuall live
         bf=$(dirname $(readlink -e ~/.bash_profile))
-        ( cd $bf;
-        gitstat=$(git status --short)
-        if [ -z "$gitstat" ]; then
-            # unfortunately, can't use recurse
-            # because of some sub-sub-modules we don't want to pull.
-            git pull --prune
-            git submodule foreach git pull --prune
-        else
-            echo
-            echo "--- Uncommited changes in " $bf "---"
-            echo $gitstat
-            echo
+
+        #
+        # The bash_profile will call this with 'maybe'
+        # as an arg. When that appear, only do the update
+        # if its has been at least 48 hours from the last one.
+        # (assuming we can figure that out)
+        #
+        if [ "$1" = "maybe" ]; then
+            if [ -e "${bf}/last_update" ]; then
+                local file_time
+                file_time=$(stat -c %Y -- "${bf}/last_update")
+                if (( $(( $(date +%s) - ${file_time} )) < 17280 )); then
+                    expired=false
+                fi
+            fi
         fi
-        )
+
+        if [ "${expired}" = "true" ]; then
+            ( cd $bf;
+            gitstat=$(git status --short)
+            if [ -z "$gitstat" ]; then
+                # unfortunately, can't use recurse
+                # because of some sub-sub-modules we don't want to pull.
+                git pull --prune
+                git submodule foreach git pull --prune
+                touch "${bf}/last_update"
+            else
+                echo
+                echo "--- Uncommited changes in " $bf "---"
+                echo $gitstat
+                echo
+            fi
+            )
+        fi
     fi
 }
+
 # only do this if we are interactive
 case "$-" in
     *i*) 
+        # are we the only me logged in?
         cnt=$(ps -fu $USER | grep -e -bash | grep -v grep | wc -l)
         # 3 because the capture above will spawn a subshell.
         if  (( $cnt < 3 )); then
-            check_config
+            check_config "maybe"
         fi
         ;;
 esac
