@@ -169,7 +169,7 @@ check_config()
             git rev-parse --show-toplevel
         )
 
-        echo "cfg_dir = ${cfg_dir}"
+        #echo "cfg_dir = ${cfg_dir}"
 
         #
         # The bash_profile will call this with 'maybe'
