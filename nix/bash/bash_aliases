@@ -6,7 +6,7 @@ case $NODE in
         alias jsrv="bundle exec jekyll serve --host $IP"
         alias hsrv="hugo server --bind $IP --baseURL http://$IP/ --appendPort"
         ;;
-    MainDev)
+    MainDev|archvm)
         IP=$(hostname -i)
         alias jsrv="bundle exec jekyll serve --host ${IP}"
         alias hsrv="hugo server --bind ${IP} --baseURL http://${IP}/ --appendPort"
@@ -16,10 +16,6 @@ case $NODE in
         alias hsrv="hugo server"
         ;;
 esac
-
-mkpost() {
-   hugo new --editor vim post/$1.md
-}
 
 if [[ -x ~/.bash_local_aliases ]]; then
     . ~/.bash_local_aliases
