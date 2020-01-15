@@ -152,9 +152,9 @@ endif
 " plugin config {{{1
 
 " lightline config
-"let g:lightline = {
-"   \ 'colorscheme' : 'solarized'
-"   \ }
+let g:lightline = {
+   \ 'colorscheme' : 'gruvbox_material'
+   \ }
 " lightline shows this for us
 "set noshowmode
 
