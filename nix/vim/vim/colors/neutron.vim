@@ -45,7 +45,7 @@ let s:gray_e0 = "#e0e0e0"
 
 " The 'normal' colors.
 let s:bg      = "#f3f2ed"
-let s:fg      = "#303030"
+let s:fg      = "#202020"
 
 " Vim functional group {{{1
 "        group             fg         bg         attr

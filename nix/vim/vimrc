@@ -1,6 +1,7 @@
 "set verbosefile=verbose.txt
 let mapleader = ","
 
+set background=dark
 " color {{{1
 if ! has('gui_running')
     " if we're not running the gui
@@ -12,7 +13,8 @@ if ! has('gui_running')
 endif
 
 " Set the color scheme
-colorscheme neutron
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
 
 " Global config options {{{1
 "Tab Stop handling
@@ -150,11 +152,11 @@ endif
 " plugin config {{{1
 
 " lightline config
-let g:lightline = {
-   \ 'colorscheme' : 'solarized'
-   \ }
+"let g:lightline = {
+"   \ 'colorscheme' : 'solarized'
+"   \ }
 " lightline shows this for us
-set noshowmode
+"set noshowmode
 
 " Project support {{{1
 if $PVIM_PROJECT_FILE != '' 
