@@ -10,3 +10,4 @@
 [submodule "nix/vim/vim/pack/mhh/start/polyglot"]
 	path = nix/vim/vim/pack/mhh/start/polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+	branch = master
