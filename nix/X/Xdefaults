@@ -1,5 +1,9 @@
 XTerm*faceName: Hack
-XTerm*faceSize: 12
+XTerm*faceSize: 10
+XTerm*Foreground: #D4BE98
+XTerm*HiForeground: #02D02F36
+XTerm*Background: #1D2021
+XTerm*HiBackground: #FAFAFA
 
 *faceName: Hack
 *faceSize: 12
