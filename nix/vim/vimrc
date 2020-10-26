@@ -37,6 +37,7 @@ filetype plugin indent on
 " Automatically change directory to
 " be that of the current buffer.
 "set autochdir
+" autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 set laststatus=2
 
@@ -170,4 +171,5 @@ let g:lightline = {
 " Project support {{{1
 if $PVIM_PROJECT_FILE != '' 
     source $PVIM_PROJECT_FILE
+    nnoremap <leader>pd :execute ":lcd" . g:project_path<cr>
 endif
