@@ -193,8 +193,8 @@ check_config()
             if [ -z "$gitstat" ]; then
                 # unfortunately, can't use recurse
                 # because of some sub-sub-modules we don't want to pull.
-                git pull --prune
-                git submodule foreach git pull --prune
+                git pull --prune --recurse
+                #git submodule foreach git pull --prune
                 touch "${cfg_dir}/last_update"
             else
                 echo
