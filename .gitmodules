@@ -11,3 +11,6 @@
 	path = nix/vim/vim/pack/mhh/start/polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
 	branch = master
+[submodule "nix/vim/vim/pack/mhh/start/vim-cmake"]
+	path = nix/vim/vim/pack/mhh/start/vim-cmake
+	url = https://github.com/cdelledonne/vim-cmake.git
