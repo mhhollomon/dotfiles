@@ -39,3 +39,5 @@
 	rmrprune = remote prune origin
 [pager]
     branch = false
+[init]
+	defaultBranch = main
