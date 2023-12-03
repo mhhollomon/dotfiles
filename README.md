@@ -23,7 +23,7 @@ Winows does not currently have a bootstrap.
 
 First, fork this repo into your github account.
 
-Then, clone to you target host.
+Then, clone to your target host.
 
 Then, add your dotfiles:
 
