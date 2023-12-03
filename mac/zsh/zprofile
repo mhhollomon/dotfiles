@@ -1,0 +1,7 @@
+set -o vi
+
+#Homebrew setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Github token
+[ -f "$HOME/bin/git_askpass" ] && export GET_ASKPASS=$HOME/bin/git_askpass
