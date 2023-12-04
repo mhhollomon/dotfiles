@@ -4,7 +4,21 @@
 " the resolution of the X display if
 " appropriate.
 "
-if has('unix')
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+if g:os == "Darwin"
+    let s:big_font = "Hack-Regular:h16"
+    let s:sml_font = "Hack-Regular:h16"
+elseif g:os == "Windows"
+    let s:big_font = "Consolas:h12:cANSI:qDRAFT"
+    let s:sml_font = "Consolas:h9:cANSI:qDRAFT"
+elseif  has('unix')
     let s:resolution = '0x0'
     if executable("xdpyinfo")
         let s:resolution = system("xdpyinfo | awk '/resolution/ { printf(\"%s\", $2); }'")
