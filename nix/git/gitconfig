@@ -23,6 +23,7 @@
 	ff = only
 [push]
 	default = current
+	autoSetupRemote = true
 [rerere]
 	enabled = true
 	autoUpdate = true
@@ -41,3 +42,16 @@
     branch = false
 [init]
 	defaultBranch = main
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[merge]
+	conflictstyle = zdiff3

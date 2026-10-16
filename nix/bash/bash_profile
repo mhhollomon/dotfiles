@@ -101,9 +101,16 @@ if [ -d "${HOME}/.linuxbrew" ]; then
     export MANPATH="$(brew --prefix)/share/man:$MANPATH"
     export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 fi
+
 #
 # Functions
 #
+set_title()
+{
+    local title="${1}"
+
+    echo -ne "\e]2;${title}\a"
+}
 
 # Function: global_find
 #
